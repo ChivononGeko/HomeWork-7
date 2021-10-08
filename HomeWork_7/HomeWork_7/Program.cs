@@ -28,9 +28,11 @@ namespace HomeWork_7
                 case ConsoleKey.Delete:                 //Удаление
                         Console.WriteLine("Введите имя по которому вы хотите удалить запись...");
                         string label = Console.ReadLine();
-                        rep.Remove(label);                       
+                        if (rep.Remove(label))
+                        { Console.WriteLine("Успешное удаление..."); }
+                        else
+                        { Console.WriteLine("Такой записи нет..."); }
                         rep.UnLoad();
-                        rep.PrintToConsole();
                         break;
                 case ConsoleKey.Backspace:              //Редактирование
                         Console.WriteLine("Введите имя по которому вы хотите редактировать запись...");
@@ -40,7 +42,6 @@ namespace HomeWork_7
                         else
                         { Console.WriteLine("Такой записи нет..."); }
                         rep.UnLoad();
-                        rep.PrintToConsole();
                         break; 
                     case ConsoleKey.Q:                  //Упорядочивание
                         Console.WriteLine("Введите номер,по какому полю нужно упорядочить:\n1)По имени\n2)По фамилии\n3)По возрасту");
