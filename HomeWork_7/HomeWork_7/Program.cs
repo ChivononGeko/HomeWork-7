@@ -21,23 +21,28 @@ namespace HomeWork_7
                        rep.PrintToConsole();
                    break;
                 case ConsoleKey.Spacebar:               //Добавление
-                       rep.Add(rep.FIlling());
+                       Console.WriteLine("Введите имя..."); string name = Console.ReadLine();
+                       Console.WriteLine("Введите фамилию..."); string lastname = Console.ReadLine();
+                       Console.WriteLine("Введите возраст..."); int age = int.Parse(Console.ReadLine());
+                       Console.WriteLine("Введите запись..."); string record = Console.ReadLine();
+                       rep.Add(new Field(name, lastname, age, record));
                        rep.UnLoad();
                        rep.PrintToConsole();
                    break;
                 case ConsoleKey.Delete:                 //Удаление
-                        Console.WriteLine("Введите имя по которому вы хотите удалить запись...");
-                        string label = Console.ReadLine();
-                        if (rep.Remove(label))
-                        { Console.WriteLine("Успешное удаление..."); }
-                        else
-                        { Console.WriteLine("Такой записи нет..."); }
+                        Console.WriteLine("Введите номер записи, которую вы хотите удалить запись...");
+                        int index = int.Parse(Console.ReadLine());
+                        rep.RemByIndex(index);
                         rep.UnLoad();
                         break;
                 case ConsoleKey.Backspace:              //Редактирование
                         Console.WriteLine("Введите имя по которому вы хотите редактировать запись...");
-                        label = Console.ReadLine();                       
-                        if (rep.Edit(label))
+                        string label = Console.ReadLine();
+                        Console.WriteLine("Введите имя..."); name = Console.ReadLine();
+                        Console.WriteLine("Введите фамилию..."); lastname = Console.ReadLine();
+                        Console.WriteLine("Введите возраст..."); age = int.Parse(Console.ReadLine());
+                        Console.WriteLine("Введите запись..."); record = Console.ReadLine();
+                        if (rep.Edit(label, new Field(name, lastname, age, record)))
                         { Console.WriteLine("Успешное редактиование..."); }
                         else
                         { Console.WriteLine("Такой записи нет..."); }

@@ -46,18 +46,6 @@ namespace HomeWork_7
             }
         }
         /// <summary>
-        /// Метод для создания новых записей
-        /// </summary>
-        /// <returns></returns>
-        public Field FIlling()
-        {
-            Console.WriteLine("Введите имя..."); string name = Console.ReadLine();
-            Console.WriteLine("Введите фамилию..."); string lastname = Console.ReadLine();
-            Console.WriteLine("Введите возраст..."); int age = int.Parse(Console.ReadLine());
-            Console.WriteLine("Введите запись..."); string record = Console.ReadLine();
-            return new Field(name, lastname, age, record);
-        }
-        /// <summary>
         /// Метод, для добавления записей в массив
         /// </summary>
         /// <param name="field">Запись</param>
@@ -71,7 +59,7 @@ namespace HomeWork_7
         /// Поиск индекса записи по полю
         /// </summary>
         /// <param name="label"></param>
-        public void Remove(string label)
+        public bool Remove(string label)
         {
             bool flag = false;
             for (int i = 0; i < this.index; i++)
@@ -99,10 +87,7 @@ namespace HomeWork_7
                     flag = true;
                 }
             }
-            if (flag)
-            { Console.WriteLine("Успешное удаление..."); }
-            else
-            { Console.WriteLine("Такой записи нет..."); }
+            return flag;
         }
         /// <summary>
         /// Удаления записи
@@ -126,31 +111,31 @@ namespace HomeWork_7
         /// Редактирвоание
         /// </summary>
         /// <param name="label">Значение, по которому надо редактировать запись</param>
-        public bool Edit(string label)
+        public bool Edit(string label, Field field)
         {
             bool flag = false;
             for (int i = 0; i < this.index; i++)
             {
                 if (this.fields[i].FirstName.Trim() == label)
                 {
-                    this.fields[i--] = FIlling();
+                    this.fields[i--] = field;
                     flag = true;
                 }
 
                 else if (this.fields[i].LastName.Trim() == label)
                 {
-                    this.fields[i--] = FIlling();
+                    this.fields[i--] = field;
                     flag = true;
                 }
 
                 else if (this.fields[i].Record.Trim() == label)
                 {
-                    this.fields[i--] = FIlling();
+                    this.fields[i--] = field;
                     flag = true;
                 }
                 else if (int.TryParse(label, out int result)  && this.fields[i].Age == result)
                 {
-                    this.fields[i--] = FIlling();
+                    this.fields[i--] = field;
                     flag = true;
                 }
             }
